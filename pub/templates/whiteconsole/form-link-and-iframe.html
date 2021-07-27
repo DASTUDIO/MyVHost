@@ -1,0 +1,547 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>云实验室 - 张新豪</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/r/theme/whiteconsole/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/material-design-icons/3.0.0/iconfont/material-icons.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/css/bootstrap.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/r/theme/whiteconsole/styles/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/styles/extras.1.1.0.min.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+  <body class="h-100">
+    {% if not nickname %}
+    <div class="color-switcher animated">
+
+      <h5>移动授权</h5>
+      <center><small>其他浏览器授权后在本机登录</small></center>
+
+
+      <!-- qrcode -->
+      <div class="actions mb-4">
+        <div id ="wx_qrcode" style="padding:10px;background-color:#ffffff">
+
+        </div>
+      </div>
+
+       <!-- phone -->
+      <div class="social-wrapper">
+
+      <ul class="accent-colors">
+        <li class="accent-primary active" data-color="primary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-secondary" data-color="secondary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-success" data-color="success">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-info" data-color="info">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-warning" data-color="warning">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-danger" data-color="danger">
+          <i class="material-icons">check</i>
+        </li>
+      </ul>
+        <div>
+          <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action" href="#" id="mobile-login-tab">
+            前往Github授权登录</a>
+        </div>
+      </div>
+
+      <div class="close">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <div class="color-switcher-toggle animated pulse infinite">
+      <i class="material-icons">cloud</i>
+    </div>
+    {% endif %}
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+          <div class="main-navbar">
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
+              <a class="navbar-brand w-100 mr-0" href="/" style="line-height: 25px;">
+                <div class="d-table m-auto">
+                  <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="/r/theme/whiteconsole/images/shards-dashboards-logo.svg" alt="Shards Dashboard">
+                  <span class="d-none d-md-inline ml-1">云实验室</span>
+                </div>
+              </a>
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>
+          <form action="/search/" method="get" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索..." aria-label="Search"> </div>
+          </form>
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <a class="nav-link " href="/add/">
+                  <i class="material-icons">note_add</i>
+                  <span>新建实验</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/src/">-->
+<!--                  <i class="material-icons">note_add</i>-->
+<!--                  <span>模板</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/api_comment/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>评论接口</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/api/">
+                  <i class="material-icons">view_module</i>
+                  <span>调试接口</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/pdf/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>PDF论文</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/url/">
+                  <i class="material-icons">view_module</i>
+                  <span>动态链接</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="/profile/">
+                  <i class="material-icons">person</i>
+                  <span>我的ID</span>
+                </a>
+              </li>
+              <!--
+              <li class="nav-item">
+                <a class="nav-link " href="tables.html">
+                  <i class="material-icons">table_chart</i>
+                  <span>Tables</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="error.html">
+                  <i class="material-icons">error</i>
+                  <span>Errors</span>
+                </a>
+              </li>
+              -->
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+              <form action="/search/" method="get" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
+                <div class="input-group input-group-seamless ml-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="material-icons">search</i>
+                    </div>
+                  </div>
+                  <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索.." aria-label="Search"> </div>
+              </form>
+              <ul class="navbar-nav border-left flex-row ">
+
+
+                <li class="nav-item border-right dropdown notifications">
+
+                  {%if volume > 0 %}
+                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link-icon__wrapper">
+                      <i class="material-icons">&#xE7F4;</i>
+                      <span class="badge badge-pill badge-danger">{{volume}}</span>
+
+                    </div>
+                  </a>
+                  {% endif %}
+
+                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
+                    {% for key,value in notices.items %}
+                    <a class="dropdown-item" href="#">
+                      <div class="notification__icon-wrapper">
+                        <div class="notification__icon">
+                          <i class="material-icons">volume_up</i>
+                        </div>
+                      </div>
+
+                      <div class="notification__content">
+                        <span class="notification__category">{{key}}</span>
+                        <p>{{value}} </p>
+                      </div>
+                    </a>
+                    {% endfor %}
+
+                    <a class="dropdown-item notification__all text-center" href="#"> 更多信息 </a>
+                  </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" id="login-btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle mr-2" src="
+                    {% if headimg %}
+                    {{ headimg }}
+                    {% else %}
+                    /r/theme/whiteconsole/images/avatars/0.jpg
+                    {% endif %}
+                    " alt="User Avatar">
+                    <span class="d-none d-md-inline-block">
+                      {% if nickname %}
+                      {{ nickname }}
+                      {% else %}
+                      登录
+                      {% endif %}
+                    </span>
+                  </a>
+                  {% if nickname %}
+                  <div class="dropdown-menu dropdown-menu-small">
+
+                    <a class="dropdown-item" href="/search/?userid={{userid}}">
+                      <i class="material-icons">note_add</i> 我的资源</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="/logout/">
+                      <i class="material-icons text-danger">&#xE879;</i> 注销 </a>
+                  </div>
+                  {% endif %}
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+          
+          <div class="main-content-container container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4 mb-3 border-bottom">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">云实验室</span>
+                <h3 class="page-title">动态链接</h3>
+              </div>
+            </div>
+            <!-- End Page Header -->
+            <div class="row mb-2">
+              
+             
+            <div class="row">
+              <div class="col-lg-8 mb-4">
+                <div class="card card-small mb-4">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">配置</h6>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    
+                    <li class="list-group-item p-3">
+                      <div class="row">
+                        
+                        <div class="col-sm-12 col-md-12">
+                          <strong class="text-muted d-block mb-2">源(Source)</strong>
+                          <form>
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <input onchange="key_verify()" id="key" type="text" class="form-control is-invalid" id="validationServer01" placeholder="设置网址URL_KEY" value="" required>
+                                <div id="vkey" class="invalid-feedback">此项未填写</div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <input id="domain" onchange="dv()" type="text" class="form-control is-valid" id="validationServer02" placeholder="自定义域名(Domain)" value="" required>
+                                <div id="vdomain" class="valid-feedback">不使用自定义域名</div>
+                              </div>
+                            </div>
+                            <strong class="text-muted d-block mb-2">目标(Target)</strong>
+                            <div class="form-group">
+                              <input id="destination" onchange="url_verify()" type="text" class="form-control is-invalid" id="validationServer03" placeholder="目标地址(例如http://pdf.plus/)" value="" required>
+                              <div id="vdestination" class="invalid-feedback">此项未填写</div>
+                            </div>
+                            <strong class="text-muted d-block mb-2">转发方式</strong>
+                            <div class="form-group">
+                              <select id="jump_mode" class="form-control">
+                                <option selected="" >302跳转</option>
+                                <option >IFrame</option>
+                              </select>
+                            </div><br/>
+                            <div class="row ">
+                              <div class="col text-center">
+                                <button id="clear" type="button" class="mb-2 btn btn-danger mr-2 col-md-5">清空</button>
+                                <button id="submit" type="button" class="mb-2 btn btn-primary mr-2 col-md-5">提交</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-4">
+               
+                <!-- Input & Button Groups -->
+                <div class="card card-small mb-4">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">权限</h6>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-3">
+                      <form>
+                        <!-- Button Groups -->
+                        <strong class="text-muted d-block mb-2">可见性</strong>
+                        <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                          <label id="permission" class="btn btn-white active">
+                            <input type="radio" name="read" value="0" autocomplete="off" checked>公开</label>
+                          <label class="btn btn-white">
+                            <input type="radio" name="read" value="3" autocomplete="off">登录</label>
+                          <label class="btn btn-white">
+                            <input type="radio" name="modify" value="2" autocomplete="off">密码</label>
+<!--                          <label class="btn btn-white">-->
+<!--                            <input type="radio" name="read" value="1" autocomplete="off">私密</label>-->
+                        </div>
+                        <!-- / Button Groups -->
+                        <!-- Input Groups -->
+                        <strong class="text-muted d-block mb-2">密码</strong>
+
+                        <div class="input-group mb-3">
+                            <input id="token" type="text" class="form-control" placeholder="密码(选填)" aria-label="token" aria-describedby="permission token">
+                        </div>
+                        
+                        <!-- Input Groups -->
+                        <!-- Seamless Input Groups -->
+                       
+                        
+                        <!-- / Seamless Input Groups -->
+                        <!-- Input/Button Group -->
+                       
+                        <!-- / Input/Button Group -->
+                        <!-- Input/Button Group -->
+                        <!-- / Input/Button Group -->
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+                <!-- / Input & Button Groups -->
+
+                 <!-- Sliders & Progress Bars -->
+
+                <!-- / Sliders & Progress Bars -->
+
+
+              </div>
+            </div>
+          </div>
+          </div>
+          <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="http://zhangxinhao.com">返回博客</a>
+              </li>
+
+            </ul>
+            <span class="copyright ml-auto my-auto mr-2">备案号: <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备17051019号-1</a></span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <!--
+    <div class="promo-popup animated">
+      <a href="#" class="pp-cta extra-action">
+        <img src="https://dgc2qnsehk7ta.cloudfront.net/uploads/sd-blog-promo-2.jpg"> </a>
+      <div class="pp-intro-bar"> Need More Templates?
+        <span class="close">
+          <i class="material-icons">close</i>
+        </span>
+        <span class="up">
+          <i class="material-icons">keyboard_arrow_up</i>
+        </span>
+      </div>
+      <div class="pp-inner-content">
+        <h2>Shards Dashboard Pro</h2>
+        <p>A premium & modern Bootstrap 4 admin dashboard template pack.</p>
+        <a class="pp-cta extra-action" href="#">Download</a>
+      </div>
+    </div>
+    -->
+
+
+
+    <script src="/r/theme/whiteconsole/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/popper.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/bootstrap.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/Chart.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/jquery.sharrre.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/extras.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/app/app-components-overview.1.1.0.js"></script>
+
+    <script type="text/javascript">
+
+    	function key_verify()
+    	{
+    		_url = "/url_verify/" + $("#key").val();
+    		$.get(_url,function(data){
+    			if(data.error)
+    			{
+    				$("#key").removeClass("is-valid");
+    				$("#key").addClass("is-invalid");
+    				$("#vkey").removeClass("valid-feedback");
+    				$("#vkey").addClass("invalid-feedback");
+    				$("#vkey").html(data.error);
+    			}
+    			if(data.valid)
+    			{
+    				$("#key").removeClass("is-invalid");
+    				$("#key").addClass("is-valid");
+    				$("#vkey").removeClass("invalid-feedback");
+    				$("#vkey").addClass("valid-feedback");
+    				$("#vkey").html(data.valid);
+    			}
+    		});
+    	}
+
+    	function url_verify()
+    	{
+    		var des = $("#destination").val();
+    		if(des.indexOf("http://") != -1 || des.indexOf("https://") != -1)
+    		{
+    			$("#destination").removeClass("is-invalid");
+    			$("#destination").addClass("is-valid");
+    			$("#vdestination").removeClass("invalid-feedback");
+    			$("#vdestination").addClass("valid-feedback");
+    			$("#vdestination").html("正确的网址格式");
+
+    		}
+    		else
+    		{
+    			$("#destination").removeClass("is-valid");
+   				$("#destination").addClass("is-invalid");
+   				$("#vdestination").removeClass("valid-feedback");
+   				$("#vdestination").addClass("invalid-feedback");
+   				$("#vdestination").html("需要网址前加http://或https://");
+    		}
+    	}
+
+
+    	function dv()
+    	{
+    		_url = "/domain_verify/" + $("#domain").val();
+
+            if(_url==""){return;}
+
+    		$.get(_url,function(data){
+    		  if(data.success)
+    		  {
+    			$("#domain").removeClass("is-invalid");
+    			$("#domain").addClass("is-valid");
+    			$("#vdomain").removeClass("invalid-feedback");
+    			$("#vdomain").addClass("valid-feedback");
+    			$("#vdomain").html(data.success);
+    		  }
+    		  else
+    		  {
+    			$("#domain").removeClass("is-valid");
+   				$("#domain").addClass("is-invalid");
+   				$("#vdomain").removeClass("valid-feedback");
+   				$("#vdomain").addClass("invalid-feedback");
+   				if(data.error)
+   				{
+   				    $("#vdomain").html(data.error);
+   				}else{
+   					$("#vdomain").html("未知错误");
+   				}
+    		  }
+    		});
+    	}
+
+      
+      	$(document).ready(function(){
+        	$("#clear").click(function(){
+        	$("#key").val("");
+        	$("#domain").val('');
+        	$("#destination").val('');
+        	$("#jump_mode").val('');
+        	$("#title").val('');
+        	});
+        	$("#submit").click(function(){
+        	var key = $("#key").val();
+        	var domain = $("#domain").val();
+        	var destination = $("#destination").val();
+        	var jump_mode = $("#jump_mode").val();
+        	var permission = $("input[name='options']:checked").val();
+        	var title = $("#title").val();
+        	if(title==''){title="无标题";}
+
+        	var _data = {};
+        	_data["key"] = key;
+        	_data["value"] = destination;
+        	_data["title"] = title;
+        	_data["domain"] = domain;
+        	_data["readable"] = $("input[name='read']:checked").val();
+        	_data["token"] = $("#token").val();
+
+        	if(jump_mode=="302跳转"){
+        		$.post(
+        			"/al/",
+        			_data,
+        			function(data){
+        				if(data.error){alert(data.error);}
+        				else if (data.success){alert("提交成功");}
+        			},
+        			"json"
+        		);
+			}
+			if(jump_mode=="IFrame"){
+        		$.post(
+        			"/af/",
+        			_data,
+        			function(data){
+        				if(data.error){alert(data.error);}
+        				else if (data.success){alert("提交成功");}
+        			},
+        			"json"
+        		);
+			}});
+      	});
+
+    </script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,617 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>云实验室 - 张新豪</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/r/theme/whiteconsole/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/material-design-icons/3.0.0/iconfont/material-icons.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/css/bootstrap.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/r/theme/whiteconsole/styles/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/styles/extras.1.1.0.min.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css"> 
+
+    <link rel="stylesheet" href="/r/plugin/code/lib/codemirror.css">
+<!--    <link href="https://cdn.bootcdn.net/ajax/libs/codemirror/5.59.4/codemirror.css" rel="stylesheet">-->
+
+
+  </head>
+  <body class="h-100">
+    {% if not nickname %}
+    <div class="color-switcher animated">
+
+      <h5>移动授权</h5>
+      <center><small>其他浏览器授权后在本机登录</small></center>
+
+
+      <!-- qrcode -->
+      <div class="actions mb-4">
+        <div id ="wx_qrcode" style="padding:10px;background-color:#ffffff">
+
+        </div>
+      </div>
+
+       <!-- phone -->
+      <div class="social-wrapper">
+
+      <ul class="accent-colors">
+        <li class="accent-primary active" data-color="primary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-secondary" data-color="secondary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-success" data-color="success">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-info" data-color="info">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-warning" data-color="warning">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-danger" data-color="danger">
+          <i class="material-icons">check</i>
+        </li>
+      </ul>
+        <div>
+          <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action" href="#" id="mobile-login-tab">
+            前往Github授权登录</a>
+        </div>
+      </div>
+
+      <div class="close">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <div class="color-switcher-toggle animated pulse infinite">
+      <i class="material-icons">cloud</i>
+    </div>
+    {% endif %}
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+          <div class="main-navbar">
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
+              <a class="navbar-brand w-100 mr-0" href="/" style="line-height: 25px;">
+                <div class="d-table m-auto">
+                  <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="/r/theme/whiteconsole/images/shards-dashboards-logo.svg" alt="Shards Dashboard">
+                  <span class="d-none d-md-inline ml-1">云实验室</span>
+                </div>
+              </a>
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>
+          <form action="/search/" method="get" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索..." aria-label="Search"> </div>
+          </form>
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <a class="nav-link " href="/add/">
+                  <i class="material-icons">note_add</i>
+                  <span>新建实验</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/src/">-->
+<!--                  <i class="material-icons">note_add</i>-->
+<!--                  <span>模板</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/api_comment/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>评论接口</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/api/">
+                  <i class="material-icons">view_module</i>
+                  <span>调试接口</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/pdf/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>PDF论文</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/url/">
+                  <i class="material-icons">view_module</i>
+                  <span>动态链接</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="/profile/">
+                  <i class="material-icons">person</i>
+                  <span>我的ID</span>
+                </a>
+              </li>
+              <!--
+              <li class="nav-item">
+                <a class="nav-link " href="tables.html">
+                  <i class="material-icons">table_chart</i>
+                  <span>Tables</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="error.html">
+                  <i class="material-icons">error</i>
+                  <span>Errors</span>
+                </a>
+              </li>
+              -->
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+              <form action="/search/" method="get" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
+                <div class="input-group input-group-seamless ml-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="material-icons">search</i>
+                    </div>
+                  </div>
+                  <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索..." aria-label="Search"> </div>
+              </form>
+              <ul class="navbar-nav border-left flex-row ">
+
+
+                <li class="nav-item border-right dropdown notifications">
+
+                  {%if volume > 0 %}
+                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link-icon__wrapper">
+                      <i class="material-icons">&#xE7F4;</i>
+                      <span class="badge badge-pill badge-danger">{{volume}}</span>
+
+                    </div>
+                  </a>
+                  {% endif %}
+
+                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
+                    {% for key,value in notices.items %}
+                    <a class="dropdown-item" href="#">
+                      <div class="notification__icon-wrapper">
+                        <div class="notification__icon">
+                          <i class="material-icons">volume_up</i>
+                        </div>
+                      </div>
+
+                      <div class="notification__content">
+                        <span class="notification__category">{{key}}</span>
+                        <p>{{value}} </p>
+                      </div>
+                    </a>
+                    {% endfor %}
+
+                    <a class="dropdown-item notification__all text-center" href="#"> 更多信息 </a>
+                  </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" id="login-btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle mr-2" src="
+                    {% if headimg %}
+                    {{ headimg }}
+                    {% else %}
+                    /r/theme/whiteconsole/images/avatars/0.jpg
+                    {% endif %}
+                    " alt="User Avatar">
+                    <span class="d-none d-md-inline-block">
+                      {% if nickname %}
+                      {{ nickname }}
+                      {% else %}
+                      登录
+                      {% endif %}
+                    </span>
+                  </a>
+                  {% if nickname %}
+                  <div class="dropdown-menu dropdown-menu-small">
+
+                    <a class="dropdown-item" href="/search/?userid={{userid}}">
+                      <i class="material-icons">note_add</i> 我的资源</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="/logout/">
+                      <i class="material-icons text-danger">&#xE879;</i> 注销 </a>
+                  </div>
+                  {% endif %}
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+          <div class="main-content-container container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">云服务器</span>
+                <h3 class="page-title">新建实验</h3>
+              </div>
+            </div>
+            <!-- End Page Header -->
+            <div class="row">
+              <div class="col-lg-9 col-md-12">
+                <!-- Add New Post Form -->
+                <div class="card card-small mb-3">
+                  <div class="card-body">
+                    <form class="add-new-post">
+                      <textarea id="editor" class="form-control form-control-lg mb-3" > </textarea>
+                      
+                      
+                  
+                    </form>
+                  </div>
+                </div>
+                <!-- / Add New Post Form -->
+              </div>
+              <div class="col-lg-3 col-md-12">
+                <!-- Post Overview -->
+                <div class='card card-small mb-3'>
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">设置</h6>
+                  </div>
+                  <div class='card-body p-0'>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item p-3">
+                        <span class="d-flex mb-2">
+                          <i class="material-icons mr-1">flag</i>
+                          <strong class="mr-1">编辑模式:</strong>
+                          <a class="ml-auto" id="editor-toggle" href="#">去写内容</a>
+                        </span>
+                        <span class="d-flex mb-2">
+                          <i class="material-icons mr-1">visibility</i>
+                          <strong class="mr-1">功能:</strong>
+                          <strong class="text-success">标准</strong>
+                          <a class="ml-auto" href="javascript:qr_show()">生成二维码</a>
+                        </span>
+
+                      </li>
+                      <li class="list-group-item d-flex px-3">
+                        <button class="btn btn-sm btn-outline-accent" id="setvalue">
+                          <i class="material-icons">save</i> 预览 </button>
+                        <button class="btn btn-sm btn-accent ml-auto" id="submit">
+                          <i class="material-icons">note_add</i> 上线 </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- / Post Overview -->
+                <!-- Post Overview -->
+                <div class='card card-small mb-3'>
+                  <div class='card-body p-0'>
+                    <ul class="list-group list-group-flush">
+
+                      <li class="list-group-item d-flex px-3">
+                        <div class="input-group">
+                          <input id="title" type="text" class="form-control" placeholder="KEY(必填)" aria-label="Add new category" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+
+
+                <div class="card card-small mb-4">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-3">
+                      <form>
+                        <!-- Button Groups -->
+
+                        <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                          <label class="btn btn-white active">
+                            <input type="radio" name="read" value="0" autocomplete="off" checked>公开</label>
+                          <label class="btn btn-white">
+                            <input type="radio" name="read" value="3" autocomplete="off">登录</label>
+
+                          <label class="btn btn-white">
+                            <input type="radio" name="read" value="2" autocomplete="off">密钥</label>
+
+                        </div>
+
+                        <div class="form-group">
+
+                          <div class="input-group mb-3">
+
+                            <input id="token" type="text" class="form-control" placeholder="密码(选填)" aria-label="token" aria-describedby="permission token">
+
+                          </div>
+
+                        </div>
+
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class='card card-small mb-3'>
+                  <div class='card-body p-0'>
+                    <ul class="list-group list-group-flush">
+
+                      <li class="list-group-item d-flex px-3">
+                        <div class="input-group">
+                          <input id="domain" onchange="dv()" type="text" class="form-control is-valid" placeholder="绑定域名(选填)" aria-label="domain" aria-describedby="basic-addon2">
+
+                          <div id="vdomain" class="valid-feedback"></div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+
+                <!-- Post Overview -->
+                <div class='card card-small mb-3'>
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">显示在首页(选填)</h6>
+                  </div>
+                  <div class='card-body p-0'>
+                    <ul class="list-group list-group-flush">
+
+                      <li class="list-group-item px-3 pb-2">
+                        <div class="input-group">
+                          <input id="c_title" type="text" class="form-control" placeholder="名称" aria-label="domain" aria-describedby="basic-addon2">
+                          <div id="vdomain2" class="valid-feedback"></div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item d-flex px-3">
+                        <div class="input-group">
+                          <input id="c_brief" type="text" class="form-control" placeholder="简介" aria-label="domain" aria-describedby="basic-addon2">
+                          <div class="valid-feedback"></div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item d-flex px-3">
+                        <div class="input-group">
+                          <input id="c_icon" type="text" class="form-control" placeholder="背景图URL" aria-label="domain" aria-describedby="basic-addon2">
+                          <div class="valid-feedback"></div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="http://zhangxinhao.com">返回博客</a>
+              </li>
+
+            </ul>
+            <span class="copyright ml-auto my-auto mr-2">备案号: <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备17051019号-1</a></span>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+
+
+   <div class="modal fade" id="mlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">二维码</h4> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <center>
+            <div class="modal-body">
+            <div id="mqrcode"></div></br>
+              此二维码页面上线后可以使用</br>
+            </div>
+            </center>
+            <div class="modal-footer">
+                <a id="downloadLink"></a><button type="button" class="btn btn-primary" onclick="downloadClick()">下载到本地</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+
+
+
+    <script src="/r/theme/whiteconsole/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/popper.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/bootstrap.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/Chart.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/jquery.sharrre.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/extras.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/app/app-blog-new-post.1.1.0.js"></script>
+
+    <script src="/r/plugin/code/lib/codemirror.js"></script>
+<!--    <script src="https://cdn.bootcdn.net/ajax/libs/codemirror/5.59.4/codemirror.js"></script>-->
+    <script src="/r/plugin/code/mode/xml/xml.js"></script>
+
+
+
+
+    <script src="/r/plugin/qrcode/qrcode.js"></script>
+    <script>
+    function draw(){
+      $('#mqrcode').html("");
+      var qrcode = new QRCode("mqrcode", {
+        text: "https://src.pub/"+$("#title").val(),
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H });
+      }
+
+      function downloadClick () {
+      // 获取base64的图片节点
+      var img = document.getElementById('mqrcode').getElementsByTagName('img')[0];
+      // 构建画布
+      var canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      // 构造url
+      url = canvas.toDataURL('image/png');
+      // 构造a标签并模拟点击
+      var downloadLink = document.getElementById('downloadLink');
+      downloadLink.setAttribute('href', url);
+      downloadLink.setAttribute('download', '名片二维码.png');
+      downloadLink.click();
+      }
+
+      function qr_show()
+      {
+        draw();
+        $('#mlogin').modal('show');
+      }
+
+    </script>
+
+
+
+    <script>
+
+    editorDom = document.getElementById("editor");
+    var editor = CodeMirror.fromTextArea(editorDom,{mode:"text/html",lineNumbers:true});
+      
+      
+    $("#submit").click(function(){
+      var _data = {};
+      _data["key"] = $("#title").val();
+      _data["html"] = editor.getValue();
+      _data["domain"] = $("#domain").val();
+      _data["readable"] = $("input[name='read']:checked").val();
+      _data["token"] = $("#token").val();
+      _data["title"] = $("#c_title").val();
+      _data["brief"] = $("#c_brief").val();
+      _data["icon"] = $("#c_icon").val();
+
+      if($("#template").is(':checked'))
+      {
+        _data["template"] = "yes";
+        _data["api"] = $("#default").val();
+      }
+
+      //alert(JSON.stringify(_data));
+
+      $.post(
+              "/ac/",
+              _data,
+              function(data){
+              //alert(data);
+                if(data.error){alert(data.error);}
+                else if (data.success){alert("提交成功");}
+              },
+              "json"
+            );
+    });
+
+
+    document.querySelector( '#setvalue' ).addEventListener( 'click', () => {
+    //editor.setValue('<p>set</br>set</br>set</br>set</br>set</p>');
+    sessionStorage.editorcache = editor.getValue(); window.open("/page_preview/");
+    });
+
+    document.querySelector( '#editor-toggle' ).addEventListener( 'click', () => {
+    sessionStorage.editorcache = editor.getValue();
+    location.href = "/add/";
+    });
+
+    editor.setOption('lineWrapping', true);
+    editor.setSize('auto', 'auto');
+
+    window.onload=function(){if(sessionStorage.editorcache){editor.setValue(sessionStorage.editorcache);}}
+
+    </script>
+
+
+    <script>
+
+      function dv()
+    	{
+    		_url = "/domain_verify/" + $("#domain").val();
+
+            if(_url=="")
+            {
+                $("#domain").removeClass("is-invalid");
+    			$("#domain").addClass("is-valid");
+    			$("#vdomain").removeClass("invalid-feedback");
+    			$("#vdomain").addClass("valid-feedback");
+    			$("#vdomain").html("");
+                return;
+            }
+
+    		$.get(_url,function(data){
+    		  if(data.success)
+    		  {
+    			$("#domain").removeClass("is-invalid");
+    			$("#domain").addClass("is-valid");
+    			$("#vdomain").removeClass("invalid-feedback");
+    			$("#vdomain").addClass("valid-feedback");
+    			$("#vdomain").html(data.success);
+    		  }
+    		  else
+    		  {
+    			$("#domain").removeClass("is-valid");
+   				$("#domain").addClass("is-invalid");
+   				$("#vdomain").removeClass("valid-feedback");
+   				$("#vdomain").addClass("invalid-feedback");
+   				if(data.error)
+   				{
+   				    $("#vdomain").html(data.error);
+   				}else{
+   					$("#vdomain").html("未知错误");
+   				}
+    		  }
+    		});
+    	}
+
+    </script>
+
+
+
+  </body>
+</html>

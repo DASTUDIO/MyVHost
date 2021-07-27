@@ -1,0 +1,266 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>模板预览:{{title}} - 微页面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/r/theme/whiteconsole/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/css/bootstrap.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/r/theme/whiteconsole/styles/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/styles/extras.1.1.0.min.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css">
+
+  </head>
+  <body class="h-100">
+   <div class="color-switcher animated">
+
+      <h5>控制面板</h5>
+      <center><small> 使用此模板 </small></center>
+
+      <!-- qrcode -->
+      <div class="actions mb-4">
+          <center><h2> 免费 </h2></center>
+      </div>
+
+       <!-- phone -->
+      <div class="social-wrapper">
+          <!--
+      <ul class="accent-colors">
+        <li class="accent-primary active" data-color="primary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-secondary" data-color="secondary">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-success" data-color="success">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-info" data-color="info">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-warning" data-color="warning">
+          <i class="material-icons">check</i>
+        </li>
+        <li class="accent-danger" data-color="danger">
+          <i class="material-icons">check</i>
+        </li>
+      </ul>
+        -->
+
+        <div>
+          <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action" href="#" data-toggle="modal" data-target="#myModal">
+            使用这个模板</a>
+        </div>
+      </div>
+
+      <div class="close">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <div class="color-switcher-toggle animated pulse infinite">
+      <i class="material-icons">cloud</i>
+    </div>
+
+    <iframe src="{{ location }}"  width='100%' height='100%' frameborder='0' name="_blank" id="_blank" ></iframe>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">内容填充</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="title" placeholder="站内url" value="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="domain" placeholder="域名" value="" required>
+                    </div>
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <!-- Button Groups -->
+
+                        <div class="form-group col-md-6">
+                        <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                          <label class="btn btn-white active">
+                            <input type="radio" name="read" value="0" autocomplete="off" checked>公开</label>
+                          <label class="btn btn-white">
+                            <input type="radio" name="read" value="3" autocomplete="off">登录</label>
+                          <label class="btn btn-white">
+                            <input type="radio" name="read" value="2" autocomplete="off">密钥</label>
+                        </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                        <div class="form-group">
+
+                          <div class="input-group mb-3">
+
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text" id="basic-addon1">@</span>
+
+                            </div>
+
+                            <input id="token" type="text" class="form-control" placeholder="密钥" aria-label="token" aria-describedby="permission token">
+
+                          </div>
+
+                        </div>
+                        </div>
+
+                        </div>
+
+
+                    <div id="fields" class="row" style="height:125px;overflow-y:auto">
+
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button id="submit" type="button" class="btn btn-primary">发布上线</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <script src="/r/theme/whiteconsole/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/popper.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/bootstrap.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/Chart.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/jquery.sharrre.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/extras.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/app/app-components-overview.1.1.0.js"></script>
+
+
+
+   <script src="/r/plugin/baiduTemplate.js"></script>
+
+   <script id="kvpairs" type="text/template">
+
+
+       <input type="text" class="form-control" id="value<%=num;%>" placeholder="填入替换的内容" value="<%=d_value;%>" required>
+
+
+   </script>
+
+    <script>
+     // api随机码
+     function gen_token()
+     {
+        $.get("/token?type=alpha&length=16",function(data){
+            if(data.state=="success")
+            {
+                window.api = data.result;
+            }
+        });
+     }
+
+     // 生成api 返回api地址
+     function create_api(_data)
+     {
+        _key = $("#title").val() + window.api;
+        var _postData ={
+        "key":_key,
+        "params":JSON.stringify(_data),
+        "readable":$("input[name='read']:checked").val(),
+        "writeable":"1",
+        "modifiable":"1"
+                     };
+
+        $.post(
+            "/aap/",
+            _postData,
+            function(data){
+              //if(data.error){alert(data.error);}
+              //else if (data.success){alert("提交成功");}
+            },
+            "json"
+            );
+
+         return _key;
+     }
+
+
+
+     $(function(){
+
+        //初始化window.api
+        gen_token();
+
+        // api多少字段
+        fieldsVolume = 0;
+
+        // 模板keys
+        d_keys = [];
+
+        // api模板地址
+        apiTemplate = '{{api}}';
+
+        // 加载api模板到modal
+        $.ajax({
+        method: "GET",
+        url: apiTemplate,
+        dataType: "jsonp",
+        jsonpCallback: "callback",
+        success:function(data){
+            for(var key in data){
+            d_keys.push(key);
+            $("#fields").append(baidu.template("kvpairs",{"num":fieldsVolume,"d_value":data[key]}));
+            fieldsVolume++;
+            }
+            }
+        });
+
+        $("#submit").click(function(){
+            var d_data={};
+            for (var i =0; i <= fieldsVolume; i++)
+            {
+                var d_value = $("#value"+i).val();
+                d_data[d_keys[i]] = d_value;
+            }
+
+            var _data = {};
+            _data["key"] = $("#title").val();
+            _data["domain"] = $("#domain").val();
+            _data["readable"] = $("input[name='read']:checked").val();
+            _data["token"] = $("#token").val();
+            _data["source"] = "{{source}}";
+            _data["api"] = "https://src.pub/" + create_api(d_data) + "?act=queryp";
+
+            $.post(
+            "/at/",
+            _data,
+            function(data){
+              if(data.error){alert(data.error);}
+              else if (data.success){alert("提交成功");}
+            },
+            "json"
+            );
+
+        });
+
+     });
+
+    </script>
+
+  </body>
+</html>

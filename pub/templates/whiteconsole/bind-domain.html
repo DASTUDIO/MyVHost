@@ -1,0 +1,340 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>绑定域名 - 微服务器</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/r/theme/whiteconsole/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/material-design-icons/3.0.0/iconfont/material-icons.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/css/bootstrap.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/r/theme/whiteconsole/styles/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/styles/extras.1.1.0.min.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+  <body class="h-100">
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+          <div class="main-navbar">
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
+              <a class="navbar-brand w-100 mr-0" href="/" style="line-height: 25px;">
+                <div class="d-table m-auto">
+                  <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="/r/theme/whiteconsole/images/shards-dashboards-logo.svg" alt="Shards Dashboard">
+                  <span class="d-none d-md-inline ml-1">微服务器</span>
+                </div>
+              </a>
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>
+          <form action="/search/" method="get" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">search</i>
+                </div>
+              </div>
+              <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索..." aria-label="Search"> </div>
+          </form>
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <a class="nav-link " href="/add/">
+                  <i class="material-icons">note_add</i>
+                  <span>微页面</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="/src/">
+                  <i class="material-icons">note_add</i>
+                  <span>微模板</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/api_comment/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>评论接口</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/api/">
+                  <i class="material-icons">person</i>
+                  <span>微接口</span>
+                </a>
+              </li>
+
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link " href="/pdf/">-->
+<!--                  <i class="material-icons">person</i>-->
+<!--                  <span>PDF论文</span>-->
+<!--                </a>-->
+<!--              </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link " href="/url/">
+                  <i class="material-icons">view_module</i>
+                  <span>微跳转</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="/profile/">
+                  <i class="material-icons">view_module</i>
+                  <span>微名片</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="http://west.src.pub/services/domain/" target="_blank">
+                  <i class="material-icons">view_module</i>
+                  <span>域名注册</span>
+                </a>
+              </li>
+              <!--
+              <li class="nav-item">
+                <a class="nav-link " href="tables.html">
+                  <i class="material-icons">table_chart</i>
+                  <span>Tables</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="error.html">
+                  <i class="material-icons">error</i>
+                  <span>Errors</span>
+                </a>
+              </li>
+              -->
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+              <form action="/search/" method="get" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
+                <div class="input-group input-group-seamless ml-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="material-icons">search</i>
+                    </div>
+                  </div>
+                  <input name="keyword" class="navbar-search form-control" type="text" placeholder="搜索..." aria-label="Search"> </div>
+              </form>
+              <ul class="navbar-nav border-left flex-row ">
+
+
+                <li class="nav-item border-right dropdown notifications">
+
+                  {%if volume > 0 %}
+                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link-icon__wrapper">
+                      <i class="material-icons">&#xE7F4;</i>
+                      <span class="badge badge-pill badge-danger">{{volume}}</span>
+
+                    </div>
+                  </a>
+                  {% endif %}
+
+                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
+                    {% for key,value in notices.items %}
+                    <a class="dropdown-item" href="#">
+                      <div class="notification__icon-wrapper">
+                        <div class="notification__icon">
+                          <i class="material-icons">volume_up</i>
+                        </div>
+                      </div>
+
+                      <div class="notification__content">
+                        <span class="notification__category">{{key}}</span>
+                        <p>{{value}} </p>
+                      </div>
+                    </a>
+                    {% endfor %}
+
+                    <a class="dropdown-item notification__all text-center" href="http://www.src.pub"> 更多信息 </a>
+                  </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" id="login-btn" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle mr-2" src="
+                    {% if headimg %}
+                    {{ headimg }}
+                    {% else %}
+                    /r/theme/whiteconsole/images/avatars/0.jpg
+                    {% endif %}
+                    " alt="User Avatar">
+                    <span class="d-none d-md-inline-block">
+                      {% if nickname %}
+                      {{ nickname }}
+                      {% else %}
+                      登录
+                      {% endif %}
+                    </span>
+                  </a>
+                  {% if nickname %}
+                  <div class="dropdown-menu dropdown-menu-small">
+
+                    <a class="dropdown-item" href="/search/?userid={{userid}}">
+                      <i class="material-icons">note_add</i> 我的资源</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="/logout/">
+                      <i class="material-icons text-danger">&#xE879;</i> 注销 </a>
+                  </div>
+                  {% endif %}
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+          
+          <div class="main-content-container container-fluid px-4">
+
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4 mb-3 border-bottom">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">微服务器</span>
+                <h3 class="page-title">绑定域名</h3>
+              </div>
+            </div>
+            <!-- End Page Header -->
+            <div class="row mb-2 text-center">
+              
+             
+            <div class="row">
+              <div class="col-lg-12 mb-12 text-center">
+                <div class="card card-small mb-4 center-block">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">配置</h6>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    
+                    <li class="list-group-item p-3">
+                      <div class="row">
+                        
+                        <div class="col-sm-12 col-md-12">
+                          <strong class="text-muted d-block mb-2">域名</strong>
+                          <form>
+                            <div class="form-row col-sm-12 col-md-12">
+                              <div class="form-group col-md-12">
+                                <input id="key" style="width:300px" oninput="key_oninput()" type="text" class="form-control" placeholder="设置域名" value="" required>
+                                <div id="vkey" class="valid-feedback"></div>
+                              </div>
+
+                            </div>
+                            <strong class="text-muted d-block mb-2">                                      </strong>
+                            <strong id="cname" class="text-muted d-block mb-2"></strong>
+                            <div id="info" class="form-group">
+
+                            </div>
+                            <div class="row ">
+                              <div class="col text-center">
+                                <button id="clear" type="button" class="mb-2 btn btn-danger mr-2 col-md-5">清空</button>
+                                <button id="submit" type="button" class="mb-2 btn btn-primary mr-2 col-md-5">提交</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+    <!--
+    <div class="promo-popup animated">
+      <a href="#" class="pp-cta extra-action">
+        <img src="https://dgc2qnsehk7ta.cloudfront.net/uploads/sd-blog-promo-2.jpg"> </a>
+      <div class="pp-intro-bar"> Need More Templates?
+        <span class="close">
+          <i class="material-icons">close</i>
+        </span>
+        <span class="up">
+          <i class="material-icons">keyboard_arrow_up</i>
+        </span>
+      </div>
+      <div class="pp-inner-content">
+        <h2>Shards Dashboard Pro</h2>
+        <p>A premium & modern Bootstrap 4 admin dashboard template pack.</p>
+        <a class="pp-cta extra-action" href="#">Download</a>
+      </div>
+    </div>
+    -->
+
+
+
+    <script src="/r/theme/whiteconsole/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/popper.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/bootstrap.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/Chart.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/jquery.sharrre.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/extras.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="/r/theme/whiteconsole/scripts/app/app-components-overview.1.1.0.js"></script>
+
+    <script type="text/javascript"> var token = "{{ token }}";</script>
+
+    <script type="text/javascript">
+
+        function key_oninput()
+        {
+          $("#cname").html("请将"+ token + "." + $("#key").val() + "\n以CNAME方式解析至verify.src.pub" );
+        }
+
+      	$(document).ready(function(){
+        	$("#clear").click(function(){
+        	$("#key").val("");});
+
+        	$("#submit").click(function(){
+
+        	   _url = "/do_bind_domain/";
+    		     var data = {};
+    		     data["domain"] = $("#key").val();
+    		     data["token"] = token;
+
+    		     $.post(_url,data,function(data){
+    			   if(data.error)
+    			   {
+    			    alert(data.error);
+    			   }
+    			   else
+    			   {
+    			    alert(data.success);
+    			   }
+
+    		    });
+      	});
+      });
+
+
+    </script>
+
+
+  </body>
+</html>

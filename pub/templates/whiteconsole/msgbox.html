@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js h-100" lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ error }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/r/theme/whiteconsole/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/r/theme/whiteconsole/css/bootstrap.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="/r/theme/whiteconsole/styles/shards-dashboards.1.1.0.min.css">
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+  <body class="h-100">
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <main class="main-content col-lg-12 col-md-12 col-sm-12 p-0 ">
+
+
+          <div class="error">
+            <div class="error__content">
+              <h2>{{ code }}</h2>
+              <h3>{{ error }}</h3>
+              <p>{{ detail }}</p>
+              <button type="button" class="btn btn-accent btn-pill">&larr; 返回主页</button>
+            </div>
+            <!-- / .error_content -->
+          </div>
+          <!-- / .error -->
+        </main>
+      </div>
+    </div>
+
+    <script src="/r/theme/whiteconsole/scripts/jquery-3.3.1.min.js"></script>
+    <script>
+      $(".btn").click(function(){
+        $(location).attr("href","/")
+      });
+
+    </script>
+  </body>
+</html>

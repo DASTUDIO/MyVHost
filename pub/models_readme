@@ -1,0 +1,4 @@
+# api : if password correct could set token
+# use token could set values of object
+# password and token can not be read only can be set & can verify it return 1 and 0
+# format ClintUsername_value

@@ -1,0 +1,369 @@
+from django.db import models
+from django.contrib import admin
+
+
+# Morning Star Plan
+
+
+# 模版 ad 支付
+
+#=================================== Template Resource ==========================================
+# template 模版表
+class template(models.Model):
+    id = models.IntegerField(primary_key=True)  # 模版id
+    name = models.CharField(max_length=30)       # 模版名称
+    brief = models.TextField()                   # 简介
+    tag = models.CharField(max_length=20)        # Tag
+    cls = models.IntegerField()                  # 类别
+    img = models.TextField()                     # 模板效果缩略图片
+    template_url = models.TextField()            # 集中在一个html内的网站模板文件名
+
+    user_id = models.IntegerField()              # 作者用户id
+    state = models.IntegerField()                # 模板状态
+
+    price = models.IntegerField()                # 价格
+    volume = models.IntegerField()               # 销量
+    publish_time = models.IntegerField()         # 发布日期
+    is_recommend = models.IntegerField()         # 推荐等级
+
+    can_fill = models.IntegerField()             # 已验证填充内容的功能是有效的
+
+
+# 使用系统模板HTML 填充内容的  表
+class template_resource(models.Model):
+    id = models.AutoField(primary_key=True)      # 模板资源id
+    key = models.TextField()                     # resource key
+    name = models.TextField()                    # 名称是什么
+
+    permission = models.IntegerField()           # 什么权限 或者模版是什么vip级别
+    token = models.TextField()                   # 如果能修改 需要的token 比如使用token 可以创建 item
+
+    user_id = models.IntegerField()              # 所有者是谁 用户id
+    ad_id = models.TextField()                   # 广告id 多个广告用逗号隔开
+
+    domain = models.TextField()                  # 域名记录 如果有
+    url = models.TextField()                     # url 记录 必须有
+
+    template_id = models.IntegerField()          # 模版HTML哪个
+    due_time = models.IntegerField()             # 何时到期时间
+
+class template_resource_item(models.Model):
+    template_resource_id = models.IntegerField() # 所属的 模版资源的id 是多少
+
+    sub_id = models.IntegerField()               # 模版内第几条信息
+    content = models.TextField()                 # 条目的内容
+
+    token = models.TextField()                   # 使用单独的itemtoken可以修改 比如学生修改自己的资料
+
+#======================================== ORDERS & AD ===========================================
+
+# 订单支付的表 双方签约属于一个订单 两方都买 才算签约
+class orders(models.Model):
+    id = models.AutoField(primary_key=True)     # 订单编号
+    goods_id = models.IntegerField()  # 商品编号
+
+    buyer_id = models.IntegerField()  # 购买者编号
+    seller_id = models.IntegerField() # 售卖者编号
+
+    token = models.TextField()        # 一般是支付的回调地址的参数 或者是 内部转账余额的凭据
+    state = models.IntegerField()     # 交易状态
+
+    time = models.IntegerField()      # 订单日期 只有付款才记录订单
+
+# 广告id
+class ad(models.Model):
+    id = models.IntegerField(primary_key=True)     # 广告编号
+    name = models.TextField()         # 广告名称
+    brief = models.TextField()        # 简介
+    tag = models.CharField(max_length=20) # 标签
+    cls = models.IntegerField()       # 类别    
+
+    url = models.TextField()          # 链接地址
+    text = models.TextField()         # 文案
+    img = models.TextField()          # 图片
+    icon = models.TextField()         # 市场显示的图标
+
+    user_id = models.TextField()      # 所有者
+    state = models.IntegerField()     # 广告状态
+
+    price = models.IntegerField()     # 单价
+    volume = models.IntegerField()    # 签约人数
+    is_recommend = models.IntegerField()  # 推荐优先级
+    publish_time = models.IntegerField() # 发布时间
+
+    can_buy = models.IntegerField()   # 广告市场中可以购买
+    balance = models.IntegerField()   # 系统运算余额的点击量 剩余多少点击量 买的是点击量 不是时间
+    
+
+class ad_sign(models.Model): # 广告签约单
+    id = models.IntegerField(primary_key=True)             # 资源广告单对应关系
+    ad_party_signed = models.IntegerField()        # 广告主是否已签约 如果待签约 会有特殊数字
+    resource_party_signed = models.IntegerField()  # 内容厂商是否签约
+    expire_time = models.IntegerField()            # 签约时长
+
+    ad_id = models.IntegerField()         # 广告编号 网站点击触发后 通过Resource ID 和 ad id 获得签约单号 写成item
+    resource_id = models.IntegerField()            # 触发广告的资源的编号
+    resource_type = models.IntegerField()          # 确定是哪种资源
+
+    start_time = models.IntegerField() # 起始日期 每次签约id签约单号不同
+    due_time = models.IntegerField()   # 结束日期
+    
+
+
+
+# 统一计数
+class count(models.Model):                # 广告签约单的数据
+    resource_type = models.IntegerField() # 资源 以及广告签约点sign都是   
+    resource_id = models.IntegerField()   # 资源或者签约单号
+    ip = models.TextField()               # 访问者id
+    time = models.IntegerField()          # 访问时间
+    header = models.TextField()           # 访问者详情
+
+
+# url 或domain  和 resource_type 对应的表 寻找资源导航之前用的
+class resource_type_map(models.Model):
+    key = models.TextField()                   # URL 
+    domain = models.TextField()                # domain
+    resource_type = models.IntegerField()      # 哪种类型的资源
+
+
+
+#======================================== CUSTOM HTML =========================================
+ 
+# 使用自定义html文件的资源 表
+class custom_resource(models.Model):
+    id = models.AutoField(primary_key=True)     # 资源编号
+    key = models.TextField()                    # url_key
+    name = models.CharField(max_length=128)     # 资源名称
+
+    user_id = models.IntegerField()             # 作者用户id
+    state = models.IntegerField()               # 资源状态
+
+    url = models.TextField()                    # 资源url 必须
+    domain = models.TextField()                 # 资源 domain 可选
+
+    path = models.TextField()                   # 保存的html模板的文件名
+    ad_id = models.IntegerField()               # 广告id
+
+    permission = models.IntegerField()          # 权限
+    token = models.TextField()                  # 如果可更改 需要的token
+
+    due_time = models.IntegerField()            # 到期时间
+
+
+
+#======================================= WEB API ==================================
+
+
+# 使用 web api 的资源
+class api_resource(models.Model):
+    id = models.AutoField(primary_key=True)     # 资源编号
+    key = models.TextField()                    # url_key
+    format = models.IntegerField()              # 是xml还是json等
+    name = models.CharField(max_length=128)     # 资源名称
+
+    user_id = models.IntegerField()             # 作者用户编号
+    state = models.IntegerField()               # 资源状态
+
+    url = models.TextField()                    # url 如果没有domain 则是主站地址 如果有domain 则是domain下的分地址
+    domain = models.TextField()                 # 域名
+
+    permission = models.IntegerField()          # 权限
+    token = models.TextField()                  # 高权限token 比如token可以创建item
+
+    due_time = models.IntegerField()            # 到期时间
+  
+class api_resource_item(models.Model):
+    api_resource_id = models.IntegerField()     # api资源编号
+
+    permission = models.IntegerField()          # 单独的对象权限 比如有token的json访问才能看 强安全的模式 每次交互都会重置token 
+    token = models.TextField()                  # 单独的item token    
+
+    key = models.TextField()                    # 相当于Key了
+    value = models.TextField()                  # 相当于Value
+
+
+
+
+# 自定义 临时 token k-v 表
+class token(models.Model):
+    token_type = models.IntegerField()          # token 类型 短信验证码 是否cache读取后是否删除
+    due_time = models.IntegerField()            # 有效期 添加后即放入定时删除队列 而不是扫数据库判断
+
+    key = models.TextField()                    # 比如手机号码
+    value = models.TextField()                  # 比如验证码
+   
+
+# 资源特征的轮廓 备用
+class resource_shape(models.Model):
+    resource_id = models.IntegerField()
+    resource_type = models.IntegerField()
+    feature_id = models.IntegerField()           # 这些id 都是写在配置文件里的
+    feature_value = models.CharField(max_length=200)
+
+
+# 用户补充表 基于dj自带的用户表的补充
+class user_detail(models.Model):
+    user_id = models.IntegerField(null=True)                          # 用户编码
+    state = models.IntegerField(null=True)                            # 账户状态
+
+    email = models.CharField(max_length=256,null=True)                # 电子邮箱
+    username = models.CharField(max_length=128)                       # 用户名
+
+    balance = models.IntegerField(null=True)                          # 余额
+    level = models.IntegerField(null=True)                            # 账号等级
+    vip = models.IntegerField(null=True)                              # vip 级别
+
+    head_img = models.TextField(null=True)                            # 头像
+    nick_name = models.CharField(max_length=128,null=True)            # 昵称
+    gender = models.IntegerField(null=True)                           # 性别
+
+    brief = models.TextField(null=True)                               # 个人说明
+    birthday = models.IntegerField(null=True)                         # 生日
+
+    real_name = models.CharField(max_length=30,null=True)             # 真实名称
+    id_card_number = models.CharField(max_length=50,null=True)        # 身份证号码
+    phone_number = models.CharField(max_length=50)                    # 手机号码
+
+    credit = models.IntegerField(null=True)                           # 信用分 加减以订单形式
+    alipay = models.TextField(null=True)                              # 支付宝账户
+    wxpay = models.TextField(null=True)                               # 微信支付账户
+    write_list = models.TextField(null=True)                          # 设置允许生成代付账单的白名单
+
+    token = models.TextField(null=True)                               # 仿西部数码的 取用户名加密码加命令的md5
+
+#    follow map
+#    articles map
+#    comments map
+#    messages map
+#    activitys
+
+
+
+# exe 
+class exe_resource(models.Model):
+    id = models.AutoField(primary_key=True)   # 项目id
+
+    name = models.CharField(max_length=128)   # 项目名称
+    brief = models.TextField()                # 简介
+
+    code = models.TextField()                 # 代码
+    is_error = models.IntegerField()          # 是否有错 用于前段显示
+
+    exe_path = models.TextField()             # exe 文件的地址
+    log_path = models.TextField()             # log 文件的地址
+
+    cron = models.TextField()                 # 类似crontab
+   
+    user_id = models.IntegerField()           # 用户编号
+    state = models.IntegerField()             # 状态
+
+    runtime_level = models.IntegerField()     # 运行时级别
+    due_time = models.IntegerField()          # 到期时间
+
+    process_id = models.IntegerField()        # 进程id
+    
+
+class exe_resource_monitor(models.Model):
+    exe_resource_id = models.IntegerField()  # 项目id
+    key = models.TextField()                 # url_keys
+    time = models.IntegerField()             # 记录时间
+
+    process_id = models.IntegerField()       # 进程id
+    cpu = models.IntegerField()              # cpu
+    ram = models.IntegerField()              # 内存
+    log_volume = models.IntegerField()       # log数量
+
+
+# Pay Agent
+class pay_agent(models.Model):
+    id = models.AutoField(primary_key=True)   # 代付订单号
+    user_id = models.IntegerField()           # 所有者id
+    state = models.IntegerField()             # 状态
+
+    amount = models.IntegerField()            # 金额
+    token = models.TextField()                # 比如支付宝的订单号 
+    recall_token = models.TextField()         # 回调地址
+
+    name = models.TextField()                 # 交易名称
+    brief = models.TextField()                # 交易简介
+
+
+# Device / protocol DP
+#class device(models.Model):
+#    id
+#    name
+#    mac
+#    ip
+#    password
+#    token
+#    cmd_code
+#    cmd_params
+#    password_stream
+#    session_token
+
+#    预留 加密key 和 加密目标字符串 开始链接时 用加密整体md5加上key加密目标字符串的其中一位 的密文的一部分dvc码作验证（比如后三位）
+#    回复后️ 要用回复命令 加上收到的dvc密文的三位的前一位 算入加密
+#    verify_key 绑定 整体命令的 md5
+#    以此预防中间人攻击
+
+
+    
+# 常常用于回调的触发事件
+class event(models.Model):
+    id = models.AutoField(primary_key=True) # 自动化id
+    event_type = models.IntegerField()      # 事件的类型 比如先验证一下是不是支付宝和微信服务器发起的回调
+
+    name = models.TextField()               # 人性化事件名称
+    brief = models.TextField()              # 人性化简短的说明
+
+    key = models.TextField()                # 事件句柄
+    state = models.IntegerField()           # 事件状态
+
+    params = models.TextField()             # 接受函数参数的需求
+    delegate_key = models.TextField()       # 事件触发的函数key
+
+    next_event_key = models.TextField()     # 链式反应中下一条事件的索引 找到下一条函数 给客户发一个消息短信之类的
+
+# 官网域名下的 key
+class resource_key(models.Model):
+    key = models.TextField()
+    resource_type = models.IntegerField()
+
+# 自定义域名下的key
+class domain(models.Model):
+    name = models.TextField()
+    owner = models.IntegerField()
+
+class domain_key(models.Model):
+    key = models.TextField()
+    resource_key = models.TextField()
+    domain = models.TextField()
+
+class user_permission(models.Model):
+    username = models.TextField()
+    permission = models.IntegerField()
+    volume = models.IntegerField()
+
+class redirect_resource(models.Model):
+    key = models.TextField()
+    value = models.TextField()
+    name = models.TextField()
+    owner = models.TextField()
+
+class iframe_resource(models.Model):
+    key = models.TextField()
+    value = models.TextField()
+    name = models.TextField()
+    owner = models.TextField()
+
+admin.site.register(user_detail)
+admin.site.register(token)
+admin.site.register(custom_resource)
+admin.site.register(resource_key)
+admin.site.register(template)
+admin.site.register(template_resource)
+admin.site.register(template_resource_item)
+admin.site.register(api_resource)
+admin.site.register(api_resource_item)
+admin.site.register(user_permission)

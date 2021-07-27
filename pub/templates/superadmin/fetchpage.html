@@ -1,0 +1,12 @@
+<html>
+
+
+<form action="fetch/" method="POST">{% csrf_token %}
+
+<input type="text" name="subitemkey" placeholder = "code"/>
+
+<input type="hidden" name="key" value="{{key}}"/>
+
+<button type="submit">OK</button>
+
+</html>
